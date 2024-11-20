@@ -1,5 +1,5 @@
 package Vendas;
-
+import DAO.ProdutosDAO;
 public class Produto {
         private int id;
         private String nome;
@@ -7,6 +7,13 @@ public class Produto {
         private double preco;
         private int quantidade;
         private double custo;
+
+    public Produto(String nome,double preco, String descricao) {        
+        this.nome = nome;
+        this.descricao = descricao;
+        this.preco = preco;        
+        this.registrarProduto();
+    } 
 
     public int getId() {
         return id;
@@ -54,5 +61,10 @@ public class Produto {
 
     public void setCusto(double custo) {
         this.custo = custo;
+    }
+    
+    public void registrarProduto(){
+        ProdutosDAO dao = new ProdutosDAO();
+        dao.adicionarProduto(this);
     }
 }
