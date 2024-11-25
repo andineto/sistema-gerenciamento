@@ -11,18 +11,23 @@ public class Carrinho {
     }
 
     void add(Produto produto, int qtd){
-        itensVenda.add(new ItemVenda(produto, qtd));
+        boolean existe = false;
+        for (ItemVenda item : itensVenda) {
+            if (Objects.equals(item.getProduto().getId(), produto.getId())) {
+                existe = true;
+                item.setQuantidade(item.getQuantidade() + qtd);
+            }
+        }
+        if(!existe) itensVenda.add(new ItemVenda(produto, qtd));
     }
 
     void remover(Produto produto, int qtd) {
-        Boolean existe = false;
-        for (int i = 0; i <= itensVenda.size(); i++) {
-            if (itensVenda.get(i).getProduto().getNome() == produto.getNome()) {
+        boolean existe = false;
+        for (ItemVenda item : itensVenda) {
+            if (Objects.equals(item.getProduto().getNome(), produto.getNome())) {
                 existe = true;
-                itensVenda.get(i).setQuantidade(itensVenda.get(i).getQuantidade() - qtd);
-                if (itensVenda.get(i).getQuantidade() <= 0) {
-                    itensVenda.remove(i);
-                }
+                item.setQuantidade(item.getQuantidade() - qtd);
+                if (item.getQuantidade() <= 0) itensVenda.remove(item);
             }
         }
         if (!existe) {
@@ -33,6 +38,6 @@ public class Carrinho {
     public Venda fecharCarrinho(){
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String dataVenda = sdf.format(new Date());
-        return new Venda(0, dataVenda, this.itensVenda);
+        return new Venda(dataVenda, this.itensVenda);
     }
 }

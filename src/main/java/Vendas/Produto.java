@@ -65,6 +65,6 @@ public class Produto {
     
     public void registrarProduto(){
         ProdutosDAO dao = new ProdutosDAO();
-        dao.adicionarProduto(this);
+        this.id = dao.adicionarProduto(this);
     }
 }

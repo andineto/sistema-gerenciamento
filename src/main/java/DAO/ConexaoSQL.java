@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConexaoSQL {
+
     public static Connection conectar() {
         Connection conexao = null;
         try {
@@ -15,5 +16,9 @@ public class ConexaoSQL {
             System.out.println(e.getMessage());
         }
         return conexao;
+    }
+    public static void FecharConexao(Connection connect) throws SQLException {
+        connect.close();
+        System.out.println("Conexão com o SQLite foi fechada");
     }
 }

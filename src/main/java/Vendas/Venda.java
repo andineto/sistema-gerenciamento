@@ -1,6 +1,7 @@
 package Vendas;
 
-import DAO.VendasDao;
+import DAO.ItemVendasDAO;
+import DAO.VendasDAO;
 
 import java.util.List;
 
@@ -10,11 +11,20 @@ public class Venda {
     private double valorTotal;
     private List<ItemVenda> itensVenda;  // Lista de itens vendidos
 
-    public Venda(int id, String dataVenda, List<ItemVenda> itensVenda) {
-        this.id = id;
+    public Venda(String dataVenda, List<ItemVenda> itensVenda) {
         this.dataVenda = dataVenda;
         this.itensVenda = itensVenda;
         calcularValorTotal();
+    }
+
+    public Venda(int id, String dataVenda, double valorTotal){
+        this.id = id;
+        this.dataVenda = dataVenda;
+        this.valorTotal = valorTotal;
+    }
+
+    public int getId(){
+        return this.id;
     }
 
     public String getDataVenda() {
@@ -30,8 +40,12 @@ public class Venda {
     }
 
     public void registrarVenda(){
-        VendasDao dao = new VendasDao();
-        dao.adicionarVenda(this);
+        VendasDAO dao = new VendasDAO();
+        this.id = dao.adicionarVenda(this);
+        for (ItemVenda item : this.itensVenda) {
+            item.setVenda(this);
+            item.registrarItemVenda();
+        }
     }
 
     public void calcularValorTotal() {
