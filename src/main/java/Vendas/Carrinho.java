@@ -10,7 +10,7 @@ public class Carrinho {
         itensVenda = new ArrayList<>();
     }
 
-    void add(Produto produto, int qtd){
+    public void add(Produto produto, int qtd){
         boolean existe = false;
         for (ItemVenda item : itensVenda) {
             if (Objects.equals(item.getProduto().getId(), produto.getId())) {
@@ -21,7 +21,7 @@ public class Carrinho {
         if(!existe) itensVenda.add(new ItemVenda(produto, qtd));
     }
 
-    void remover(Produto produto, int qtd) {
+    public void remover(Produto produto, int qtd) {
         boolean existe = false;
         for (ItemVenda item : itensVenda) {
             if (Objects.equals(item.getProduto().getNome(), produto.getNome())) {

@@ -15,6 +15,13 @@ public class Produto {
         this.registrarProduto();
     } 
 
+    public Produto(int id, String nome, String descricao, double preco) {
+        this.id = id;
+        this.nome = nome;
+        this.descricao = descricao;
+        this.preco = preco;
+    }
+
     public int getId() {
         return id;
     }
@@ -66,5 +73,13 @@ public class Produto {
     public void registrarProduto(){
         ProdutosDAO dao = new ProdutosDAO();
         this.id = dao.adicionarProduto(this);
+    }
+
+    public String toListString() {
+        return String.format("%-5d %-20s R$%.2f", this.id, this.nome, this.preco);
+    }
+
+    public String toCarrinhoString(int qtd) {
+        return String.format("%-5d %-20s %-5d R$%-10.2f", this.id, this.nome, qtd, this.preco * qtd);
     }
 }

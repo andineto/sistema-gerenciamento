@@ -3,6 +3,8 @@ package DAO;
 import Vendas.Produto;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProdutosDAO {
 
@@ -33,6 +35,27 @@ public class ProdutosDAO {
 
     public Produto getProdutoById(int idProduto) {
         return new Produto("asd", 25.55,"arroz" );
+    }
+    
+    public List<Produto> consultarProdutos() {
+        List<Produto> vendas = new ArrayList<>();
+        Connection conexao = ConexaoSQL.conectar();
+        try {
+            String sql = "SELECT id, nome,descricao, preco FROM Produtos ORDER BY id";
+            Statement stmt = conexao.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String nome = rs.getString("nome");
+                String descricao = rs.getString("descricao");
+                double preco = rs.getDouble("preco");
+                vendas.add(new Produto(id, nome, descricao, preco));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return vendas;
     }
 }
 
