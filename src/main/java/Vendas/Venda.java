@@ -3,6 +3,7 @@ package Vendas;
 import DAO.ItemVendasDAO;
 import DAO.VendasDAO;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public class Venda {

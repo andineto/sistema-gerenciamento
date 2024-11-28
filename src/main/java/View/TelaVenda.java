@@ -11,6 +11,7 @@ import Vendas.Produto;
 import Vendas.Venda;
 
 import java.awt.*;
+import java.sql.SQLException;
 import java.util.List;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -36,7 +37,6 @@ public class TelaVenda extends javax.swing.JFrame {
         listaCarrinho.setModel(dfCarrinho);
         setProdutosNaLista();
         limparCarrinho();
-        addAoCarrinho(listaProdutos.get(1));
     }
     private void setProdutosNaLista(){
         ProdutosDAO pd = new ProdutosDAO();
@@ -104,7 +104,11 @@ public class TelaVenda extends javax.swing.JFrame {
         btnFecharCarrinho.setText("Fechar Carrinho");
         btnFecharCarrinho.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnFecharCarrinhoActionPerformed(evt);
+                try {
+                    btnFecharCarrinhoActionPerformed(evt);
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -264,7 +268,7 @@ public class TelaVenda extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
-    private void btnFecharCarrinhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFecharCarrinhoActionPerformed
+    private void btnFecharCarrinhoActionPerformed(java.awt.event.ActionEvent evt) throws SQLException {//GEN-FIRST:event_btnFecharCarrinhoActionPerformed
         // TODO add your handling code here:
         Venda venda = carrinho.fecharCarrinho();
         int confirmacao = JOptionPane.showConfirmDialog(

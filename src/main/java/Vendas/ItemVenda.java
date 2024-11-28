@@ -4,6 +4,8 @@ import DAO.ItemVendasDAO;
 import DAO.ProdutosDAO;
 import DAO.VendasDAO;
 
+import java.sql.SQLException;
+
 public class ItemVenda {
     int id;
     private Produto produto;

@@ -12,6 +12,7 @@ public class Carrinho {
 
     public void add(Produto produto, int qtd){
         boolean existe = false;
+        System.out.println("A quantidade é " + qtd);
         for (ItemVenda item : itensVenda) {
             if (Objects.equals(item.getProduto().getId(), produto.getId())) {
                 existe = true;
