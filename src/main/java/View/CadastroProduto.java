@@ -185,7 +185,8 @@ public class CadastroProduto extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLimparActionPerformed
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
-        System.exit(0);
+        new Menu().setVisible(true);
+        CadastroProduto.this.setVisible(false);
     }//GEN-LAST:event_btnSairActionPerformed
 
     private void descricaoTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_descricaoTextFieldActionPerformed

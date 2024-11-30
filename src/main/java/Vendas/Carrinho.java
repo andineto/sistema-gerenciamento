@@ -41,4 +41,8 @@ public class Carrinho {
         String dataVenda = sdf.format(new Date());
         return new Venda(dataVenda, this.itensVenda);
     }
+
+    public List<ItemVenda> getItens() {
+        return itensVenda;
+    }
 }
