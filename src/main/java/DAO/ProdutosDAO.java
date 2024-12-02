@@ -1,5 +1,6 @@
 package DAO;
 
+import Estoque.ProdutoEstoque;
 import Vendas.Produto;
 
 import java.sql.*;
@@ -8,7 +9,7 @@ import java.util.List;
 
 public class ProdutosDAO {
 
-    public int adicionarProduto(Produto produto) {
+    public int cadastrarProduto(Produto produto) {
         Connection conexao = ConexaoSQL.conectar();
         int idProduto = -1;
         try {
@@ -32,10 +33,6 @@ public class ProdutosDAO {
         }
         return idProduto;
     }
-
-    public Produto getProdutoById(int idProduto) {
-        return new Produto("asd", 25.55,"arroz" );
-    }
     
     public List<Produto> consultarProdutos() {
         List<Produto> vendas = new ArrayList<>();
@@ -52,10 +49,15 @@ public class ProdutosDAO {
                 double preco = rs.getDouble("preco");
                 vendas.add(new Produto(id, nome, descricao, preco));
             }
+            ConexaoSQL.FecharConexao(conexao);
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return vendas;
     }
-}
 
+    public int adicionarProduto(ProdutoEstoque item){
+    return 0;
+    }
+    
+}

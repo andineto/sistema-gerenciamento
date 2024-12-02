@@ -15,6 +15,7 @@ public class Menu extends javax.swing.JFrame {
      */
     public Menu() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -32,7 +33,7 @@ public class Menu extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         btnCadastrarProduto = new javax.swing.JButton();
         btnGerenciarFuncionários = new javax.swing.JButton();
-        btnGerenciarEntradaEstoque = new javax.swing.JButton();
+        btnExibirVendas = new javax.swing.JButton();
 
         jLabel1.setText("jLabel1");
 
@@ -68,12 +69,12 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        btnGerenciarEntradaEstoque.setText("REGISTRAR ENTRADA DE ESTOQUE");
-        btnGerenciarEntradaEstoque.setHideActionText(true);
-        btnGerenciarEntradaEstoque.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnGerenciarEntradaEstoque.addActionListener(new java.awt.event.ActionListener() {
+        btnExibirVendas.setText("LISTAR VENDAS EFETUADAS");
+        btnExibirVendas.setHideActionText(true);
+        btnExibirVendas.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnExibirVendas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGerenciarEntradaEstoqueActionPerformed(evt);
+                btnExibirVendasActionPerformed(evt);
             }
         });
 
@@ -84,13 +85,13 @@ public class Menu extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(160, 160, 160)
                 .addComponent(jLabel2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(160, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnExibirVendas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnNovaVenda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnGerenciarFuncionários, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnGerenciarEntradaEstoque, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
                     .addComponent(btnCadastrarProduto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(20, 20, 20))
         );
@@ -103,11 +104,11 @@ public class Menu extends javax.swing.JFrame {
                 .addComponent(btnNovaVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnCadastrarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(13, 13, 13)
-                .addComponent(btnGerenciarEntradaEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnGerenciarFuncionários, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnExibirVendas, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -118,7 +119,9 @@ public class Menu extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -126,24 +129,28 @@ public class Menu extends javax.swing.JFrame {
 
     private void btnNovaVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovaVendaActionPerformed
         // TODO add your handling code here:
-       TelaVenda telaVenda = new TelaVenda();
-        telaVenda.setVisible(true);
-        Menu.this.setVisible(false);
+        new TelaVenda().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnNovaVendaActionPerformed
 
     private void btnCadastrarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarProdutoActionPerformed
         // TODO add your handling code here:
         new CadastroProduto().setVisible(true);
-        Menu.this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_btnCadastrarProdutoActionPerformed
 
     private void btnGerenciarFuncionáriosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGerenciarFuncionáriosActionPerformed
         // TODO add your handling code here:
+        new GerenciarFuncionarios().setVisible(true);
+        this.dispose();
+        
     }//GEN-LAST:event_btnGerenciarFuncionáriosActionPerformed
 
-    private void btnGerenciarEntradaEstoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGerenciarEntradaEstoqueActionPerformed
+    private void btnExibirVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExibirVendasActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnGerenciarEntradaEstoqueActionPerformed
+        new ConsultarVendas().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnExibirVendasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -182,7 +189,7 @@ public class Menu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrarProduto;
-    private javax.swing.JButton btnGerenciarEntradaEstoque;
+    private javax.swing.JButton btnExibirVendas;
     private javax.swing.JButton btnGerenciarFuncionários;
     private javax.swing.JButton btnNovaVenda;
     private javax.swing.JLabel jLabel1;

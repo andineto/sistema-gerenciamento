@@ -36,7 +36,10 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel1" alignment="0" max="-2" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -49,14 +52,14 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="160" max="-2" attributes="0"/>
                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="160" max="32767" attributes="0"/>
               </Group>
-              <Group type="102" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="btnExibirVendas" max="32767" attributes="0"/>
                       <Component id="btnNovaVenda" max="32767" attributes="0"/>
                       <Component id="btnGerenciarFuncionários" alignment="0" max="32767" attributes="0"/>
-                      <Component id="btnGerenciarEntradaEstoque" alignment="1" pref="360" max="32767" attributes="0"/>
                       <Component id="btnCadastrarProduto" alignment="1" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
@@ -72,11 +75,11 @@
                   <Component id="btnNovaVenda" min="-2" pref="36" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="btnCadastrarProduto" min="-2" pref="36" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
-                  <Component id="btnGerenciarEntradaEstoque" min="-2" pref="36" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="btnGerenciarFuncionários" min="-2" pref="36" max="-2" attributes="0"/>
-                  <EmptySpace pref="30" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="btnExibirVendas" min="-2" pref="36" max="-2" attributes="0"/>
+                  <EmptySpace pref="15" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -117,14 +120,14 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGerenciarFuncion&#xe1;riosActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="btnGerenciarEntradaEstoque">
+        <Component class="javax.swing.JButton" name="btnExibirVendas">
           <Properties>
-            <Property name="text" type="java.lang.String" value="REGISTRAR ENTRADA DE ESTOQUE"/>
+            <Property name="text" type="java.lang.String" value="LISTAR VENDAS EFETUADAS"/>
             <Property name="hideActionText" type="boolean" value="true"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGerenciarEntradaEstoqueActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnExibirVendasActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

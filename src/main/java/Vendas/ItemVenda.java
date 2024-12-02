@@ -22,15 +22,6 @@ public class ItemVenda {
         this.valorTotal = valorUnitario * quantidade;
     }
 
-    public ItemVenda(int id, int idProduto, int idVenda, int quantidade, double valorUnitario, double valorTotal){
-        this.id = id;
-        this.produto = new ProdutosDAO().getProdutoById(idProduto);
-        this.venda = new VendasDAO().getVendaById(idVenda);
-        this.quantidade = quantidade;
-        this.valorTotal = valorTotal;
-        this.valorUnitario = valorUnitario;
-    }
-
     // Getters e Setters
     public Produto getProduto() {
         return produto;

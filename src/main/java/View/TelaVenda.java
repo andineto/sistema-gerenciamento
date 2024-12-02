@@ -36,6 +36,7 @@ public class TelaVenda extends JFrame {
 
     public TelaVenda() {
         initComponents();
+        this.setLocationRelativeTo(null);
         dfCarrinho = new DefaultTableModel(new String[]{"ID", "Nome", "Qtde", "Preço Total"}, 0);
         carrinho = new Carrinho();
         listaCarrinho.setModel(dfCarrinho);
@@ -106,7 +107,7 @@ public class TelaVenda extends JFrame {
             }
         });
 
-        btnFecharCarrinho.setText("Fechar Carrinho");
+        btnFecharCarrinho.setText("Registrar Carrinho");
         btnFecharCarrinho.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnFecharCarrinhoActionPerformed(evt);
@@ -122,7 +123,7 @@ public class TelaVenda extends JFrame {
 
         txtQtd.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtQtd.setText("1");
-        txtQtd.setBorder(javax.swing.BorderFactory.createLineBorder(null));
+        txtQtd.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtQtd.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         txtQtd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -156,6 +157,8 @@ public class TelaVenda extends JFrame {
         jScrollPane1.setViewportView(listaCarrinho);
 
         jLabel3.setText("Quantidade");
+
+        jScrollPane2.setPreferredSize(getPreferredSize());
 
         produtosParaAdd.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -233,22 +236,27 @@ public class TelaVenda extends JFrame {
                 .addComponent(btnAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(705, 705, 705))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(5, 5, 5)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnFecharCarrinho)
-                    .addComponent(btnLimpar))
-                .addGap(461, 461, 461))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel1)
-                .addGap(5, 5, 5)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnVoltar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnFecharCarrinho)
+                            .addComponent(btnLimpar))
+                        .addGap(461, 461, 461))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(btnVoltar)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -312,7 +320,7 @@ public class TelaVenda extends JFrame {
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
         new Menu().setVisible(true);
-        TelaVenda.this.setVisible(false);
+        TelaVenda.this.dispose();
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed

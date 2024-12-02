@@ -5,7 +5,6 @@ public class Produto {
         private String nome;
         private String descricao;
         private double preco;
-        private int quantidade;
         private double custo;
 
     public Produto(String nome,double preco, String descricao) {        
@@ -54,13 +53,6 @@ public class Produto {
         this.preco = preco;
     }
 
-    public int getQuantidade() {
-        return quantidade;
-    }
-
-    public void setQuantidade(int quantidade) {
-        this.quantidade = quantidade;
-    }
 
     public double getCusto() {
         return custo;
@@ -72,7 +64,7 @@ public class Produto {
     
     public void registrarProduto(){
         ProdutosDAO dao = new ProdutosDAO();
-        this.id = dao.adicionarProduto(this);
+        this.id = dao.cadastrarProduto(this);
     }
 
     public String toListString() {

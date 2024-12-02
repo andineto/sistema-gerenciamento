@@ -1,5 +1,6 @@
 package DAO;
 
+import Vendas.Produto;
 import Vendas.Venda;
 
 import java.sql.*;
@@ -21,26 +22,33 @@ public class VendasDAO{
             if (rs.next()) {
                 idVenda = rs.getInt(1);
             }
+            ConexaoSQL.FecharConexao(conexao);
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return idVenda;
     }
 
-    public List<Venda> consultarVendas() {
-        List<Venda> vendas = new ArrayList<>();
+    public List<Object[]> consultarVendas() {
+        List<Object[]> vendas = new ArrayList<>();
         Connection conexao = ConexaoSQL.conectar();
         try {
-            String sql = "SELECT * FROM Vendas";
+            String sql = """
+                         SELECT Vendas.id, Vendas.data_venda, Produtos.nome, ItensVenda.quantidade, ItensVenda.valor_total
+                         FROM Vendas INNER JOIN ItensVenda ON id_venda = Vendas.id INNER JOIN Produtos ON ItensVenda.id_produto = Produtos.id
+                         ORDER BY Vendas.id;""";
             Statement stmt = conexao.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
 
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String dataVenda = rs.getString("data_venda");
+                String nomeProduto = rs.getString("nome");
+                int quantidade = rs.getInt("quantidade");
                 double valorTotal = rs.getDouble("valor_total");
-                vendas.add(new Venda(id, dataVenda, valorTotal));
+                vendas.add(new Object[] {id, dataVenda, nomeProduto, quantidade, valorTotal});
             }
+            ConexaoSQL.FecharConexao(conexao);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -70,12 +78,12 @@ public void excluirVendaById(int id) {
         PreparedStatement stmt = conexao.prepareStatement(sql);
         stmt.setInt(1, id);
         stmt.executeUpdate();
+        sql = "DELETE FROM ItensVenda WHERE id_venda = ?";
+        stmt = conexao.prepareStatement(sql);
+        stmt.setInt(1, id);
+        stmt.executeUpdate();
     } catch (SQLException e) {
         e.printStackTrace();
     }
  }
-
-    public Venda getVendaById(int idVenda) {
-        return new Venda(45, "asd", 45);
-    }
 }
