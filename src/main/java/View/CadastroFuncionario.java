@@ -12,6 +12,43 @@ public class CadastroFuncionario extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
     }
 
+    private boolean validarCPF(String cpf) {
+    // Remove caracteres não numéricos
+    cpf = cpf.replaceAll("\\D", "");
+
+    // Verifica se tem 11 dígitos
+    if (cpf.length() != 11) return false;
+
+    // Verifica se todos os dígitos são iguais (ex: 111.111.111-11)
+    if (cpf.matches("(\\d)\\1{10}")) return false;
+
+    try {
+        int soma = 0;
+        int peso = 10;
+
+        // Calcula o primeiro dígito verificador
+        for (int i = 0; i < 9; i++) {
+            soma += (cpf.charAt(i) - '0') * peso--;
+        }
+        int digito1 = 11 - (soma % 11);
+        if (digito1 > 9) digito1 = 0;
+
+        // Calcula o segundo dígito verificador
+        soma = 0;
+        peso = 11;
+        for (int i = 0; i < 10; i++) {
+            soma += (cpf.charAt(i) - '0') * peso--;
+        }
+        int digito2 = 11 - (soma % 11);
+        if (digito2 > 9) digito2 = 0;
+
+        // Verifica se os dígitos calculados conferem com os informados
+        return digito1 == (cpf.charAt(9) - '0') && digito2 == (cpf.charAt(10) - '0');
+    } catch (Exception e) {
+        return false;
+    }
+}
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -146,9 +183,50 @@ public class CadastroFuncionario extends javax.swing.JFrame {
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
 
+        String nome = txtNome.getText();
+        String cpf = txtCpf.getText();
+        String salarioBrutoStr = txtSalarioBruto.getText();
+        
+        
+        
+        if (nome.isEmpty() || cpf.isEmpty() || salarioBrutoStr.isEmpty()){
+            
+            JOptionPane.showMessageDialog(this, "Todos os campos devem ser preenchidos!", "Erro", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (nome.isEmpty()){
+            
+            JOptionPane.showMessageDialog(this, "Nome não pode ser vazio!", "Erro", JOptionPane.ERROR_MESSAGE);
+            return; // Interrompe o fluxo caso o nome esteja vazio
+        }
+    
+    // Validar se o nome contém apenas letras e espaços
+        if (!nome.matches("[a-zA-Z\\s]+")){
+            
+            JOptionPane.showMessageDialog(this, "Nome deve conter apenas letras e espaços!", "Erro", JOptionPane.ERROR_MESSAGE);
+            return; // Interrompe o fluxo caso o nome contenha caracteres inválidos
+        }
+        
+        if (!validarCPF(cpf)){
+            
+            JOptionPane.showMessageDialog(this, "CPF inválido! Verifique e tente novamente.", "Erro", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        double salarioBruto;
+        try {
+            salarioBruto = Double.parseDouble(salarioBrutoStr);
+        } 
+        catch (NumberFormatException e){
+            
+            JOptionPane.showMessageDialog(this, "Salário bruto deve ser um valor numérico!", "Erro", JOptionPane.ERROR_MESSAGE);
+            return;  // Interrompe o fluxo de execução caso haja erro na conversão
+            
+        }
+
         Funcionario f = new Funcionario(txtNome.getText(), txtCpf.getText(), Double.parseDouble(txtSalarioBruto.getText()));
         
-                int confirmacao = JOptionPane.showConfirmDialog(
+        int confirmacao = JOptionPane.showConfirmDialog(
                 this,
                 "Nome do funcionário: " + f.getNome() + " com salario liquido de: " + f.getSalarioLiquido() + "\nDeseja confirmar o registro?",
                 "Confirmar registro de Funcionário",
@@ -215,23 +293,7 @@ public class CadastroFuncionario extends javax.swing.JFrame {
             }
         });
     }
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+   
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnCancelar;

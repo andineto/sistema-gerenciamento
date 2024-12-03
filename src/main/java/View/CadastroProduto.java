@@ -96,25 +96,22 @@ public class CadastroProduto extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(28, 28, 28)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(nomeTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
+                        .addComponent(nomeTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
                         .addGap(202, 202, 202))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(precoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(descricaoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(precoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(243, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(descricaoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -161,11 +158,49 @@ public class CadastroProduto extends javax.swing.JFrame {
     }//GEN-LAST:event_nomeTextFieldActionPerformed
 
     private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
-    String nome = nomeTextField.getText();
-    double preco = Double.parseDouble(precoTextField.getText());
-    String descricao = descricaoTextField.getText();
+    String nome = nomeTextField.getText().trim();
+    double preco;
+    String descricao = descricaoTextField.getText().trim();
     
-    // Faça o que for necessário com os dados
+    
+    
+    if (nome.isEmpty()){
+        
+        JOptionPane.showMessageDialog(this, "O nome do produto não pode ser vazio!", "Erro", JOptionPane.ERROR_MESSAGE);
+        return; // Interrompe o fluxo caso o nome esteja vazio
+        
+    }
+    
+    // Validar se o nome contém apenas letras e espaços
+    if (!nome.matches("[a-zA-Z\\s]+"))  {
+        
+        JOptionPane.showMessageDialog(this, "Nome do produto deve conter apenas letras e espaços!", "Erro", JOptionPane.ERROR_MESSAGE);
+        return; // Interrompe o fluxo caso o nome contenha caracteres inválidos
+        
+    }
+    
+    // Validar Preço
+     try {
+        preco = Double.parseDouble(precoTextField.getText().trim());
+        
+        if (preco <= 0){            
+            JOptionPane.showMessageDialog(this, "O preço deve ser um valor positivo!", "Erro", JOptionPane.ERROR_MESSAGE);
+            return; // Interrompe o fluxo caso o preço seja negativo ou zero
+        }
+        
+    }catch (Exception e){    
+        JOptionPane.showMessageDialog(this, "O preço deve ser um número válido!", "Erro", JOptionPane.ERROR_MESSAGE);
+        return; // Interrompe o fluxo caso o preço não seja um número válido    
+    }
+    
+    // Validar Descrição
+    if (descricao.isEmpty()){
+        
+        JOptionPane.showMessageDialog(this, "A descrição do produto não pode ser vazia!", "Erro", JOptionPane.ERROR_MESSAGE);
+        return; // Interrompe o fluxo caso a descrição esteja vazia
+        
+    }
+    
     System.out.println("Nome: " + nome + ", Preço: " + preco + ", Descrição: " + descricao);
     JOptionPane.showMessageDialog(this, "Produto adicionado!");
     
@@ -187,9 +222,6 @@ public class CadastroProduto extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_descricaoTextFieldActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
        
 
