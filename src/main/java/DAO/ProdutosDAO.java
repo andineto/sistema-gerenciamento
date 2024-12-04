@@ -33,7 +33,7 @@ public class ProdutosDAO {
         }
         return idProduto;
     }
-    
+
     public List<Produto> consultarProdutos() {
         List<Produto> vendas = new ArrayList<>();
         Connection conexao = ConexaoSQL.conectar();
@@ -55,9 +55,4 @@ public class ProdutosDAO {
         }
         return vendas;
     }
-
-    public int adicionarProduto(ProdutoEstoque item){
-    return 0;
-    }
-    
 }

@@ -56,19 +56,6 @@ public class VendasDAO{
     }
 
 
-public void atualizarVendaById(Venda venda, int id) {
-    Connection conexao = ConexaoSQL.conectar();
-    try {
-        String sql = "UPDATE Vendas SET data_venda = ?, valor_total = ? WHERE id = ?";
-        PreparedStatement stmt = conexao.prepareStatement(sql);
-        stmt.setString(1, venda.getDataVenda());
-        stmt.setDouble(2, venda.getValorTotal());
-        stmt.setInt(3, id);
-        stmt.executeUpdate();
-    } catch (SQLException e) {
-        e.printStackTrace();
-    }
-}
 
 
 public void excluirVendaById(int id) {
